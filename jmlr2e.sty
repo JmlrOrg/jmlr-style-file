@@ -5,6 +5,10 @@
 %   Last edited October 9, 2000 by Leslie Pack Kaelbling
 %   Last edited January 23, 2001 by Alex J. Smola (we should set up RCS or CVS)
 %   Last edited March 29, 2004 Erik G. Learned-Miller
+%   Last edited January 17, 2016 Charles Sutton 
+%    (We have now set up GIT, good thing that we waited for it to
+%     be invented.)
+%
 %          The name of this file should follow the article document
 %          type, e.g. \documentstyle[jmlr]{article}
 
@@ -13,7 +17,17 @@
 % Edited by: Kevin Thompson, Martha Del Alto, Helen Stewart, Steve Minton \& Pandu Nayak.
 % Last edited: Mon  May  3 20:40:00 1993 by kthompso (Kevin Thompson) on muir
 
-\typeout{Document Style `jmlr' -- January 2001.}
+\typeout{Document Style `jmlr' -- January 2016.}
+
+\newif\if@abbrvbib\@abbrvbibfalse
+\DeclareOption{abbrvbib}{\@abbrvbibtrue}
+
+\newif\if@usehyper\@usehypertrue
+\DeclareOption{nohyperref}{\@usehyperfalse}
+\DeclareOption{hyperref}{\@usehypertrue}
+
+\DeclareOption*{\PackageWarning{jmlr}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                             REQUIRED PACKAGES
@@ -23,7 +37,17 @@
 \RequirePackage{amssymb}
 \RequirePackage{natbib}
 \RequirePackage{graphicx}
+
+\if@usehyper
+\RequirePackage[colorlinks=false,allbordercolors={1 1 1}]{hyperref}
+\fi
+
+\if@abbrvbib
+\bibliographystyle{abbrvnat}
+\else
 \bibliographystyle{plainnat}
+\fi
+
 \bibpunct{(}{)}{;}{a}{,}{,}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,7 +164,7 @@
 %% use \begin{abstract} .. \end{abstract} for abstracts.
 \renewenvironment{abstract}
 {\centerline{\large\bf Abstract}\vspace{0.7ex}%
-  \bgroup\leftskip 20pt\rightskip 20pt\small\noindent}%
+  \bgroup\leftskip 20pt\rightskip 20pt\small\noindent\ignorespaces}%
 {\par\egroup\vskip 0.25ex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -209,7 +233,6 @@
   \vskip \aftermaketitskip
 }}
 
-\newcommand\kernelmachines{(for {\sc{http://www.kernel-machines.org}})}
 \def\editor#1{\gdef\@editor{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
