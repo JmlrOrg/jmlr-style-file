@@ -242,15 +242,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Defines the pagestyle for the title page.
-%% Usage: \jmlrheading{1}{1993}{1-15}{8/93;}{9/93}
+%% Usage: \jmlrheading{1}{1993}{1-15}{8/93;}{9/93}{14-115}
 %%                      {Jane Q. Public and A. U. Thor}
 %%        \jmlrheading{vol}{year}{pages}{Submitted}{published}{authors}
 
 \def\firstpageno#1{\setcounter{page}{#1}}
 
-\def\jmlrheading#1#2#3#4#5#6{\def\ps@jmlrtps{\let\@mkboth\@gobbletwo%
+\def\jmlrheading#1#2#3#4#5#6#7{\def\ps@jmlrtps{\let\@mkboth\@gobbletwo%
 \def\@oddhead{\scriptsize Journal of Machine Learning Research #1 (#2) #3 \hfill Submitted #4; Published #5}%
-\def\@oddfoot{\scriptsize \copyright #2 #6. \hfill}%
+\def\@oddfoot{\parbox[t]{\textwidth}{\raggedright \scriptsize \copyright #2 #7.\\[5pt] 
+License: CC-BY 4.0, see \url{https://creativecommons.org/licenses/by/4.0/}. Any re-use requires a full citation, including a hyperlink. The full citation is available at \url{http://jmlr.org/papers/v#1/#6.html}.\hfill}}%
+
 \def\@evenhead{}\def\@evenfoot{}}%
 \thispagestyle{jmlrtps}}
 
