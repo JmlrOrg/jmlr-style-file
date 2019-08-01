@@ -4,7 +4,7 @@
 %      Intelligence Research (jair.sty) 
 %
 % Suggestions: Submit an issue or pull request to 
-%   https://github.com/JournalMLR/jmlr-style-file
+%   https://github.com/JmlrOrg/jmlr-style-file
 %
 %   Last edited October 9, 2000 by Leslie Pack Kaelbling
 %   Last edited January 23, 2001 by Alex J. Smola (we should set up RCS or CVS)
@@ -13,6 +13,8 @@
 %   Last edited January 9, 2017 Charles Sutton 
 %    (We have now set up GIT, good thing that we waited for it to
 %     be invented.)
+%   Last edited June 17, 2019 Fabian Pedregosa
+%     Added a preprint option
 %
 %          The name of this file should follow the article document
 %          type, e.g. \documentstyle[jmlr]{article}
@@ -20,9 +22,8 @@
 %          Copied and edited from similar file for Machine Learning Journal.
 % Original Author:  Jeff Schlimmer
 % Edited by: Kevin Thompson, Martha Del Alto, Helen Stewart, Steve Minton \& Pandu Nayak.
-% Last edited: Mon  May  3 20:40:00 1993 by kthompso (Kevin Thompson) on muir
 
-\typeout{Document Style `jmlr' -- January 2016.}
+\typeout{Document Style `jmlr'.}
 
 \newif\if@abbrvbib\@abbrvbibfalse
 \DeclareOption{abbrvbib}{\@abbrvbibtrue}
@@ -30,6 +31,13 @@
 \newif\if@usehyper\@usehypertrue
 \DeclareOption{nohyperref}{\@usehyperfalse}
 \DeclareOption{hyperref}{\@usehypertrue}
+
+% declare preprint option, which creates a preprint version ready for
+% upload to, e.g., arXiv
+\newif\if@preprint\@preprintfalse
+\DeclareOption{preprint}{
+  \@preprinttrue
+}
 
 \DeclareOption*{\PackageWarning{jmlr}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
@@ -232,10 +240,12 @@
   \def\name{\normalsize\bf}%
   \def\AND{\@endauthor\rm\hss \vskip \interauthorskip \@startauthor}
   \@startauthor \@author \@endauthor}
-
   \vskip \aftermaketitskip
+  \if@preprint
+  \else
   \noindent \@starteditor \@editor \@endeditor
   \vskip \aftermaketitskip
+  \fi
 }}
 
 \def\editor#1{\gdef\@editor{#1}}
@@ -257,10 +267,16 @@
 \def\firstpageno#1{\setcounter{page}{#1}}
 
 \def\jmlrheading#1#2#3#4#5#6#7{\def\ps@jmlrtps{\let\@mkboth\@gobbletwo%
+\if@preprint
+\def\@oddhead{} % empty header if its a preprint
+\def\@oddfoot{\parbox[t]{\textwidth}{\raggedright \scriptsize \copyright #2 #7.\\[5pt] 
+License: CC-BY 4.0, see \url{https://creativecommons.org/licenses/by/4.0/}.\hfill}}%
+\else
 \def\@oddhead{\scriptsize Journal of Machine Learning Research #1 (#2) #3 \hfill Submitted #4; Published #5}%
 \def\@oddfoot{\parbox[t]{\textwidth}{\raggedright \scriptsize \copyright #2 #7.\\[5pt] 
 License: CC-BY 4.0, see \url{https://creativecommons.org/licenses/by/4.0/}. Attribution requirements
 are provided at \url{http://jmlr.org/papers/v#1/#6.html}.\hfill}}%
+\fi
 
 \def\@evenhead{}\def\@evenfoot{}}%
 \thispagestyle{jmlrtps}}
@@ -350,6 +366,3 @@ are provided at \url{http://jmlr.org/papers/v#1/#6.html}.\hfill}}%
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{axiom}[theorem]{Axiom}
-
-
-
