@@ -17,6 +17,8 @@
 %     Added a preprint option
 %   Last edited February 3, 2020 Boyue Li
 %     Fixed section counter in appendix
+%   Last edited Sept 2, 2020 Alp Kucukelbir
+%     Do not define proof environemtn if already defined. (Thank you James Martens)
 %
 %          The name of this file should follow the article document
 %          type, e.g. \documentstyle[jmlr]{article}
@@ -359,7 +361,11 @@ are provided at \url{http://jmlr.org/papers/v#1/#6.html}.\hfill}}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\BlackBox}{\rule{1.5ex}{1.5ex}}  % end of proof
-\newenvironment{proof}{\par\noindent{\bf Proof\ }}{\hfill\BlackBox\\[2mm]}
+\ifdefined\proof
+    \renewenvironment{proof}{\par\noindent{\bf Proof\ }}{\hfill\BlackBox\\[2mm]}
+\else
+    \newenvironment{proof}{\par\noindent{\bf Proof\ }}{\hfill\BlackBox\\[2mm]}
+\fi
 \newtheorem{example}{Example} 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma} 
