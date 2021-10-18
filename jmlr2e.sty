@@ -346,15 +346,15 @@ are provided at \url{http://jmlr.org/papers/v#1/#6.html}.\hfill}}%
 % Research Note
 \long\def\researchnote#1{\noindent {\LARGE\it Research Note} #1}
 
-\renewcommand{\appendix}{\par
-  \setcounter{section}{0}
-  \setcounter{subsection}{0}
-  \def\thesection{\Alph{section}}%
-  \ifdefined\theHsection \def\theHsection{\Alph{section}} \fi%
-\def\section{\@ifnextchar*{\@startsiction{section}{1}{\z@}{-0.24in}{0.10in}%
-             {\large\bf\raggedright}}%
-{\@startsiction{section}{1}{\z@}{-0.24in}{0.10in}
-             {\large\bf\raggedright Appendix\ }}}}
+% \renewcommand{\appendix}{\par
+%   \setcounter{section}{0}
+%   \setcounter{subsection}{0}
+%   \def\thesection{\Alph{section}}%
+%   \ifdefined\theHsection \def\theHsection{\Alph{section}} \fi%
+% \def\section{\@ifnextchar*{\@startsiction{section}{1}{\z@}{-0.24in}{0.10in}%
+%              {\large\bf\raggedright}}%
+% {\@startsiction{section}{1}{\z@}{-0.24in}{0.10in}
+%              {\large\bf\raggedright Appendix\ }}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               PROOF, THEOREM, and FRIENDS
