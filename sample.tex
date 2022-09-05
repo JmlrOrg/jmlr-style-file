@@ -1,5 +1,7 @@
 \documentclass[twoside,11pt]{article}
 
+\usepackage{blindtext}
+
 % Any additional packages needed should be included after jmlr2e.
 % Note that jmlr2e.sty includes epsfig, amssymb, natbib and graphicx,
 % and defines many common macros, such as 'proof' and 'example'.
@@ -28,73 +30,52 @@
 
 % Heading arguments are {volume}{year}{pages}{date submitted}{date published}{paper id}{author-full-names}
 
-\jmlrheading{1}{2000}{1-48}{4/00}{10/00}{meila00a}{Marina Meil\u{a} and Michael I. Jordan}
+\usepackage{lastpage}
+\jmlrheading{23}{2022}{1-\pageref{LastPage}}{1/21; Revised 5/22}{9/22}{21-0000}{Author One and Author Two}
 
 % Short headings should be running head and authors last names
 
-\ShortHeadings{Learning with Mixtures of Trees}{Meil\u{a} and Jordan}
+\ShortHeadings{Sample JMLR Paper}{One and Two}
 \firstpageno{1}
 
 \begin{document}
 
-\title{Learning with Mixtures of Trees}
+\title{Sample JMLR Paper}
 
-\author{\name Marina Meil\u{a} \email mmp@stat.washington.edu \\
+\author{\name Author One \email one@stat.washington.edu \\
        \addr Department of Statistics\\
        University of Washington\\
        Seattle, WA 98195-4322, USA
        \AND
-       \name Michael I.\ Jordan \email jordan@cs.berkeley.edu \\
-       \addr Division of Computer Science and Department of Statistics\\
+       \name Author Two \email two@cs.berkeley.edu \\
+       \addr Division of Computer Science\\
        University of California\\
        Berkeley, CA 94720-1776, USA}
 
-\editor{Kevin Murphy and Bernhard Sch{\"o}lkopf}
+\editor{My editor}
 
 \maketitle
 
 \begin{abstract}%   <- trailing '%' for backward compatibility of .sty file
-This paper describes the mixtures-of-trees model, a probabilistic 
-model for discrete multidimensional domains.  Mixtures-of-trees 
-generalize the probabilistic trees of \citet{chow:68}
-in a different and complementary direction to that of Bayesian networks.
-We present efficient algorithms for learning mixtures-of-trees 
-models in maximum likelihood and Bayesian frameworks. 
-We also discuss additional efficiencies that can be
-obtained when data are ``sparse,'' and we present data 
-structures and algorithms that exploit such sparseness.
-Experimental results demonstrate the performance of the 
-model for both density estimation and classification. 
-We also discuss the sense in which tree-based classifiers
-perform an implicit form of feature selection, and demonstrate
-a resulting insensitivity to irrelevant attributes.
+\blindtext
 \end{abstract}
 
 \begin{keywords}
-  Bayesian networks, mixture models, Chow-Liu trees
+  keyword one, keyword two, keyword three
 \end{keywords}
 
 \section{Introduction}
 
-Probabilistic inference has become a core technology in AI,
-largely due to developments in graph-theoretic methods for the 
-representation and manipulation of complex probability 
-distributions~\citep{pearl:88}.  Whether in their guise as 
-directed graphs (Bayesian networks) or as undirected graphs (Markov 
-random fields), \emph{probabilistic graphical models} have a number 
-of virtues as representations of uncertainty and as inference engines.  
-Graphical models allow a separation between qualitative, structural
-aspects of uncertain knowledge and the quantitative, parametric aspects 
-of uncertainty...\\
+\blindmathpaper
 
-{\noindent \em Remainder omitted in this sample. See http://www.jmlr.org/papers/ for full paper.}
+Here is a citation \cite{chow:68}.
 
-% Acknowledgements should go at the end, before appendices and references
+% Acknowledgements and Disclosure of Funding should go at the end, before appendices and references
 
-\acks{We would like to acknowledge support for this project
-from the National Science Foundation (NSF grant IIS-9988642)
-and the Multidisciplinary Research Program of the Department
-of Defense (MURI N00014-00-1-0637). }
+\acks{All acknowledgements go at the end of the paper before appendices and references.
+Moreover, you are required to declare funding (financial activities supporting the
+submitted work) and competing interests (related financial activities outside the submitted work).
+More information about this disclosure can be found on the JMLR website.}
 
 % Manual newpage inserted to improve layout of sample file - not
 % needed in general before appendices/bibliography.
