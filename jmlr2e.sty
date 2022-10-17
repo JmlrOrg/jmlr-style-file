@@ -21,6 +21,8 @@
 %     Do not define proof environemtn if already defined. (Thank you James Martens)
 %   Last edited Sept 5, 2022 Alp Kucukelbir
 %     Disclose funding.
+%   Last edited Oct 17, 2022 Daniel LeJeune
+%     Fixed appendix title display.
 %
 %          The name of this file should follow the article document
 %          type, e.g. \documentstyle[jmlr]{article}
@@ -130,6 +132,31 @@
                              \protect\numberline{\csname the#1\endcsname}\fi
                        #7}}\fi
      \@xsect{#5}}
+
+% Title each appendix with `Appendix` before its letter
+\let\originalJMLRappendix\appendix
+\renewcommand{\appendix}{
+\originalJMLRappendix    
+\def\@sict##1##2##3##4##5##6[##7]##8{\ifnum ##2>\c@secnumdepth
+     \def\@svsec{}\else
+     \refstepcounter{##1}\edef\@svsec{\csname the##1\endcsname}\fi
+     \@tempskipa ##5\relax
+      \ifdim \@tempskipa>\z@
+        \begingroup ##6\relax
+          \@hangfrom{\hskip ##3\relax Appendix \@svsec.\hskip 0.1em}
+                    {\interlinepenalty \@M ##8\par}
+        \endgroup
+       \csname ##1mark\endcsname{##7}\addcontentsline
+         {toc}{##1}{\ifnum ##2>\c@secnumdepth \else
+                      \protect\numberline{\csname the##1\endcsname}\fi
+                    ##7}\else
+        \def\@svsechd{##6\hskip ##3\@svsec ##8\csname ##1mark\endcsname
+                      {##7}\addcontentsline
+                           {toc}{##1}{\ifnum ##2>\c@secnumdepth \else
+                             \protect\numberline{\csname the##1\endcsname}\fi
+                       ##7}}\fi
+     \@xsect{##5}}
+}
 
 \def\@sect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
      \def\@svsec{}\else 
@@ -347,16 +374,6 @@ are provided at \url{http://jmlr.org/papers/v#1/#6.html}.\hfill}}%
 
 % Research Note
 \long\def\researchnote#1{\noindent {\LARGE\it Research Note} #1}
-
-% \renewcommand{\appendix}{\par
-%   \setcounter{section}{0}
-%   \setcounter{subsection}{0}
-%   \def\thesection{\Alph{section}}%
-%   \ifdefined\theHsection \def\theHsection{\Alph{section}} \fi%
-% \def\section{\@ifnextchar*{\@startsiction{section}{1}{\z@}{-0.24in}{0.10in}%
-%              {\large\bf\raggedright}}%
-% {\@startsiction{section}{1}{\z@}{-0.24in}{0.10in}
-%              {\large\bf\raggedright Appendix\ }}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               PROOF, THEOREM, and FRIENDS
