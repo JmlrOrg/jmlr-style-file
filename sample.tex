@@ -23,6 +23,34 @@
 
 \usepackage{jmlr2e}
 
+%%%% WORKAROUND FOR CLEVERREF AND NTHEOREM
+% If you want to use modern packages such as `ntheorem` and `cleveref`, you'll need a workaround.
+% We will undefine the theorems and redefine them after we loaded the packages.
+\usepackage{ntheorem} 
+\usepackage[nameinlink,capitalize]{cleveref}
+
+% undefine theorems
+\makeatletter
+\def\cleartheorem#1{\expandafter\let\csname#1\endcsname\relax
+    \expandafter\let\csname c@#1\endcsname\relax
+}
+\makeatother
+\cleartheorem{example}
+\cleartheorem{theorem}
+\cleartheorem{lemma}
+\cleartheorem{proposition}
+\cleartheorem{definition}
+\cleartheorem{corollary}
+
+% redefine theorems
+\newtheorem{example}{Example} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma} 
+\newtheorem{proposition}[theorem]{Proposition} 
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+%%%% END WORKAROUND
+
 % Definitions of handy macros can go here
 
 \newcommand{\dataset}{{\cal D}}
